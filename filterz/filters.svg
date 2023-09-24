@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+<defs>
+<filter id="none"></filter>
+<filter id="water">
+	<feTurbulence type="turbulence" baseFrequency="0.05 0.05" numOctaves="1" seed="3" stitchTiles="stitch" result="turbulence"/>
+	<feComposite in="turbulence" in2="SourceGraphic" operator="in" result="composite"/>
+	<feColorMatrix type="matrix" values="1 0 0 0 0
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 25 -2" in="composite" result="colormatrix"/>
+	<feComposite in="SourceGraphic" in2="colormatrix" operator="in" result="composite1"/>
+	<feGaussianBlur stdDeviation="3 3" in="composite1" edgeMode="none" result="blur"/>
+	<feSpecularLighting surfaceScale="2" specularConstant="1" specularExponent="20" lighting-color="#fffffd" in="blur" result="specularLighting">
+    		<feDistantLight azimuth="-90" elevation="150"/>
+  	</feSpecularLighting>
+	<feSpecularLighting surfaceScale="2" specularConstant="1" specularExponent="20" lighting-color="#cae1fe" in="blur" result="specularLighting1">
+    		<feDistantLight azimuth="90" elevation="150"/>
+  	</feSpecularLighting>
+	<feSpecularLighting surfaceScale="7" specularConstant="1" specularExponent="35" lighting-color="#fcfeff" in="blur" result="specularLighting2">
+    		<fePointLight x="150" y="50" z="300"/>
+  	</feSpecularLighting>
+	<feComposite in="specularLighting" in2="composite1" operator="in" result="composite2"/>
+	<feComposite in="specularLighting2" in2="composite1" operator="in" result="composite3"/>
+	<feComposite in="specularLighting1" in2="composite1" operator="in" result="composite4"/>
+	<feBlend mode="multiply" in="composite4" in2="SourceGraphic" result="blend"/>
+	<feBlend mode="color-dodge" in="composite2" in2="blend" result="blend1"/>
+	<feBlend mode="soft-light" in="composite3" in2="blend1" result="blend2"/>
+</filter>
+    <filter id="paper" x="0" y="0" width="100%" height="100%">
+	
+      <feTile result="tiled-texture" in="SourceGraphic" />
+    </filter>
+</defs>
+</svg>

@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "Filterz",
+  "version": "1.0",
+  "description": "Adds a customizable filter to your websites",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "backsideofdawn@gmail.com"
+    }
+  },
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "browser_action": {
+    "default_icon": "icons/icon-32.png",
+    "default_title": "Filterz",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "background": {
+    "scripts": [
+      "browser-polyfill.min.js",
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "browser-polyfill.min.js",
+        "filter.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
